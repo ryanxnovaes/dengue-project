@@ -4,10 +4,9 @@
 [![Status: WIP](https://img.shields.io/badge/status-work%20in%20progress-orange.svg)](#)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-This repository contains the codes, data, and preliminary outputs associated with the research project "Forecasting Dengue Incidence in Brazil (2024–2025) Using SARIMAX Models with Climatic and Demographic Covariates". The study develops and evaluates statistical models for the short-term forecasting of probable dengue cases reported across Brazilian municipalities, using seasonal autoregressive integrated moving average models with exogenous variables (SARIMAX).
+Time-series analysis and forecasting of dengue incidence in Brazil (2024–2025) through SARIMAX models with exogenous climatic and demographic covariates.
 
-The analysis integrates epidemiological data (weekly dengue notifications), meteorological indicators (temperature, rainfall, humidity, dew point, wet-bulb, among others), and sociodemographic covariates (population density, income, sanitation coverage), with the objective of capturing seasonal patterns, temporal trends, and external drivers of dengue dynamics. The focus is on assessing the predictive performance of SARIMAX relative to baseline univariate models, while highlighting the contribution of climate and demographic factors to epidemic forecasting.
----
+This repository contains the codes, data, and preliminary outputs associated with the research project "Forecasting Dengue Incidence in Brazil (2024–2025) Using SARIMAX Models with Climatic and Demographic Covariates". The study develops and evaluates statistical models for the short-term forecasting of probable dengue cases reported across Brazilian municipalities, using seasonal autoregressive integrated moving average models with exogenous variables (SARIMAX).
 
 ## 📂 Repository Structure (current)
 
