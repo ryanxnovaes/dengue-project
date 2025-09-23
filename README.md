@@ -6,7 +6,7 @@
 
 Time-series analysis and forecasting of dengue incidence in Brazil (2024–2025) through SARIMAX models with exogenous climatic and demographic covariates.
 
-This repository contains the codes, data, and preliminary outputs associated with the research project "Forecasting Dengue Incidence in Brazil (2024–2025) Using SARIMAX Models with Climatic and Demographic Covariates". The study develops and evaluates statistical models for the short-term forecasting of probable dengue cases reported across Brazilian municipalities, using seasonal autoregressive integrated moving average models with exogenous variables (SARIMAX).
+This repository contains the codes, data, and preliminary outputs associated with the research project **"Forecasting Dengue Incidence in Brazil (2024–2025) Using SARIMAX Models with Climatic and Demographic Covariates"**. The study develops and evaluates statistical models for the short-term forecasting of probable dengue cases reported across Brazilian municipalities, using seasonal autoregressive integrated moving average models with exogenous variables (SARIMAX).
 
 ## 📂 Repository Structure (current)
 
@@ -14,14 +14,19 @@ This repository contains the codes, data, and preliminary outputs associated wit
 dengue-project/
 ├── codes/
 │   ├── codes.Rproj
-│   └── fetch_power_west_sp.R      # Script to download daily climate data (NASA POWER API)
+│   ├── fetch_power_west_sp.R        # Script to download daily climate data (NASA POWER API)
+│   └── transform_dengue_west_sp.R   # Script to transform weekly dengue data (bronze → silver)
 │
 ├── data/
-│   └── bronze/                    # Raw/bronze-level data
-│       ├── municipal_data_west_sp.xlsx     # Input: IBGE codes + coordinates (West São Paulo)
-│       └── climate_west_sp_daily.parquet   # Output: daily climate data (MERRA-2, 2024–2025)
+│   ├── bronze/                      # Raw/bronze-level data
+│   │   ├── climate_west_sp_daily.parquet     # Daily climate data (MERRA-2, 2024–2025)
+│   │   ├── dengue_weekly_west_sp.xlsx        # Weekly dengue cases (Arboviral Panel, 2025)
+│   │   └── municipal_data_west_sp.xlsx       # IBGE codes + coordinates (West São Paulo)
+│   │
+│   └── silver/                      # Silver-level (cleaned/processed) data
+│       └── dengue_weekly_west_sp.parquet     # Cleaned weekly dengue data (Arboviral Panel, 2025)
 │
-├── figures/                       # (to be added) Exploratory plots, diagnostics, forecasts
+├── figures/                         # Exploratory plots, diagnostics, forecasts
 │
 ├── .gitignore
 └── README.md
@@ -73,6 +78,7 @@ dengue-project/
 | T2MWET               | NASA   | Wet-bulb temperature at 2 meters (°C)                       |
 | ALLSKY\_SFC\_SW\_DWN | NASA   | All-sky surface shortwave downward irradiance (kW·h/m²/day) |
 | GWETTOP              | NASA   | Soil moisture in the top layer (fraction, 0–1)              |
+| DENGUE_CASES	        | Arboviroses Panel   | Probable dengue cases (weekly count)           |
 
 
 ## 📬 Contact
