@@ -89,6 +89,6 @@ For questions, suggestions, or collaboration proposals, please contact:
 📧 Email: [ryan.novaes@unesp.br](mailto:ryan.novaes@unesp.br)
 
 **Nicolle Rye Fukushima dos Santos**  
-📧 Email: [ryan.novaes@unesp.br](mailto:nicolle.rye@unesp.br)
+📧 Email: [nicolle.rye@unesp.br](mailto:nicolle.rye@unesp.br)
 
 ---
