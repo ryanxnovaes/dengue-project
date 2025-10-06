@@ -18,23 +18,20 @@ load_or_install <- function(pkgs) {
   }
 }
 
-load_or_install(c("dplyr", "lubridate", "arrow"))
+load_or_install(c("dplyr", "lubridate", "MMWRweek", "arrow"))
 
 # -----------------------------------------------------
 # 1. Process data (direct pipeline, no helper function)
 # -----------------------------------------------------
 climate_week <- arrow::read_parquet("../data/bronze/climate_prudente_daily.parquet") |>
   dplyr::mutate(
-    week_date = lubridate::floor_date(YYYYMMDD, unit = "week", week_start = 7),
-    week_id   = as.integer(difftime(week_date, as.Date("2024-12-29"), units = "weeks")) + 1  
-  ) |>
-  dplyr::group_by(week_id) |>
+    week_id = MMWRweek::MMWRweek(YYYYMMDD)$MMWRweek,
+    year_id = MMWRweek::MMWRweek(YYYYMMDD)$MMWRyear
+  ) |> 
+  dplyr::group_by(year_id, week_id) |>
   dplyr::summarise(
     rain_sum       = sum(PRECTOTCORR, na.rm = TRUE),      # total precipitation (mm)
-    rain_mean      = mean(PRECTOTCORR, na.rm = TRUE),     # average precipitation (mm/day)
     temp           = mean(T2M, na.rm = TRUE),             # average air temperature at 2m (°C)
-    temp_mean_max  = mean(T2M_MAX, na.rm = TRUE),         # mean of daily max temperature (°C)
-    temp_mean_min  = mean(T2M_MIN, na.rm = TRUE),         # mean of daily min temperature (°C)
     temp_abs_max   = max(T2M_MAX, na.rm = TRUE),          # absolute max temperature (°C)
     temp_abs_min   = min(T2M_MIN, na.rm = TRUE),          # absolute min temperature (°C)
     rh             = mean(RH2M, na.rm = TRUE),            # relative humidity at 2m (%)
@@ -58,10 +55,11 @@ climate_week <- arrow::read_parquet("../data/bronze/climate_prudente_daily.parqu
   ) |>
   dplyr::mutate(
     season = dplyr::case_when(
-      week_id >= 1  & week_id <= 13 ~ "Summer",
-      week_id >= 14 & week_id <= 22 ~ "Autumn",
-      week_id >= 23 & week_id <= 33 ~ "Winter",
-      week_id >= 34 & week_id <= 39 ~ "Spring",
+      week_id %in% 1:11  ~ "Summer",
+      week_id %in% 12:25 ~ "Autumn",
+      week_id %in% 26:38 ~ "Winter",
+      week_id %in% 39:51 ~ "Spring",
+      week_id == 52      ~ "Summer",
       TRUE ~ NA_character_
     )
   )

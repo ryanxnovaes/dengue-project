@@ -44,7 +44,7 @@ climate_data <- get_power(
   pars         = vars,
   temporal_api = "daily",
   lonlat       = c(-51.388974, -22.120945), # order: longitude, latitude
-  dates        = c("2024-12-29", "2025-07-05")
+  dates        = c("2023-12-31", "2025-07-05")
 ) |>
   mutate(
     municipality = "Presidente Prudente",

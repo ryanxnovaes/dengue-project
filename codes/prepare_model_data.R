@@ -8,12 +8,13 @@
 # 1. Load input data (Silver layer)
 # -----------------------------------------------------
 climate_week <- arrow::read_parquet("../data/silver/climate_prudente_weekly.parquet")
-dengue_data  <- arrow::read_parquet("../data/silver/dengue_weekly_west_sp.parquet")
+dengue_data  <- arrow::read_parquet("../data/silver/dengue_prudente_weekly.parquet")
 
 # -----------------------------------------------------
 # 2. Merge and prepare working dataset
 # -----------------------------------------------------
-working_data <- dplyr::inner_join(climate_week, dengue_data, by = "week_id") |>
+working_data <- dplyr::inner_join(climate_week, dengue_data, 
+                                  by = c("year_id", "week_id")) |>
   dplyr::relocate(dengue_cases, .after = week_id)
 
 # -----------------------------------------------------

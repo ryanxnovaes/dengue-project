@@ -34,14 +34,18 @@ dengue_data <- readxl::read_xlsx("../data/bronze/dengue_prudente_weekly.xlsx")
 # -----------------------------------------------------
 dengue_data <- dengue_data |>
   mutate(
+    ano = as.integer(sub("/.*", "", `Ano/Semana`)),
     semana_epidemiologica = as.integer(sub(".*/", "", `Ano/Semana`))
-) |>
-  filter(semana_epidemiologica <= 27) |>
-  select(semana_epidemiologica,`Casos prováveis de Dengue.`)
+  ) |>
+  filter(
+    (ano == 2024) | (ano == 2025 & semana_epidemiologica <= 27)
+  ) |>
+  select(ano, semana_epidemiologica, `Casos prováveis de Dengue.`)
 
 # Standardize column names to ACI/NASA pattern
 colnames(dengue_data) <- c(
-  "week_id",      # Epidemiological week
+  "year_id",       # Year
+  "week_id",       # Epidemiological week
   "dengue_cases"   # Probable dengue cases
 )
 
