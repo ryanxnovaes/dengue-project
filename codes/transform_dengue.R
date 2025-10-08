@@ -38,7 +38,8 @@ dengue_data <- dengue_data |>
     semana_epidemiologica = as.integer(sub(".*/", "", `Ano/Semana`))
   ) |>
   filter(
-    (ano == 2024) | (ano == 2025 & semana_epidemiologica <= 27)
+    ano >= 2022 & ano <= 2025 & 
+      (ano != 2025 | semana_epidemiologica <= 27)
   ) |>
   select(ano, semana_epidemiologica, `Casos prováveis de Dengue.`)
 
