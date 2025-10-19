@@ -61,6 +61,20 @@ climate_week <- arrow::read_parquet("../data/bronze/climate_prudente_daily.parqu
       week_id %in% 39:51 ~ "Spring",
       week_id == 52      ~ "Summer",
       TRUE ~ NA_character_
+    ),
+    premises_index = case_when(                            # premises index (% of premises with larvae)
+      year_id == 2022 ~ 4.1,
+      year_id == 2023 ~ 6.1,
+      year_id == 2024 ~ 3.4,
+      year_id == 2025 ~ 3.6,
+      TRUE ~ NA_real_
+    ),
+    breteau_index = case_when(                             # breteau index (positive containers per 100 premises)
+      year_id == 2022 ~ 5.8,
+      year_id == 2023 ~ 9.1,
+      year_id == 2024 ~ 4.4,
+      year_id == 2025 ~ 4.6,
+      TRUE ~ NA_real_
     )
   )
 
