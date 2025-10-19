@@ -34,6 +34,7 @@ climate_week <- arrow::read_parquet("../data/bronze/climate_prudente_daily.parqu
     temp           = mean(T2M, na.rm = TRUE),             # average air temperature at 2m (°C)
     temp_abs_max   = max(T2M_MAX, na.rm = TRUE),          # absolute max temperature (°C)
     temp_abs_min   = min(T2M_MIN, na.rm = TRUE),          # absolute min temperature (°C)
+    temp_range = temp_abs_max - temp_abs_min,             # weekly temperature range (°C)
     rh             = mean(RH2M, na.rm = TRUE),            # relative humidity at 2m (%)
     sh             = mean(QV2M, na.rm = TRUE),            # specific humidity at 2m (kg/kg)
     wind_speed_2m  = mean(WS2M, na.rm = TRUE),            # avg wind speed at 2m (m/s)
