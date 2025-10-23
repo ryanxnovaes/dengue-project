@@ -26,9 +26,10 @@ load_or_install(c("dplyr", "lubridate", "MMWRweek", "arrow"))
 climate_week <- arrow::read_parquet("../data/bronze/climate_prudente_daily.parquet") |>
   dplyr::mutate(
     week_id = MMWRweek::MMWRweek(YYYYMMDD)$MMWRweek,
-    year_id = MMWRweek::MMWRweek(YYYYMMDD)$MMWRyear
+    year_id = MMWRweek::MMWRweek(YYYYMMDD)$MMWRyear,
+    week_start = MMWRweek::MMWRweek2Date(MMWRyear = year_id, MMWRweek = week_id)
   ) |> 
-  dplyr::group_by(year_id, week_id) |>
+  dplyr::group_by(year_id, week_id, week_start) |>
   dplyr::summarise(
     rain_sum       = sum(PRECTOTCORR, na.rm = TRUE),      # total precipitation (mm)
     temp           = mean(T2M, na.rm = TRUE),             # average air temperature at 2m (°C)
