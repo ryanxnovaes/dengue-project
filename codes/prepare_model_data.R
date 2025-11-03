@@ -15,7 +15,7 @@ dengue_data  <- arrow::read_parquet("../data/silver/dengue_prudente_weekly.parqu
 # -----------------------------------------------------
 working_data <- dplyr::inner_join(climate_week, dengue_data, 
                                   by = c("year_id", "week_id")) |>
-  dplyr::relocate(dengue_cases, .after = week_id)
+  dplyr::relocate(dengue_cases, .after = week_start)
 
 # -----------------------------------------------------
 # 3. Export to Gold layer
