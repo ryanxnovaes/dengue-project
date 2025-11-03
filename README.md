@@ -32,9 +32,7 @@ dengue-project/
 │   │
 │   └── gold/                        # Final integrated dataset for modeling
 │       └── working_data.parquet
-│
-├── results/                         # Forecast results, model metrics, and validation outputs
-│
+││
 ├── figures/                         # Exploratory plots, diagnostics, and forecast visualizations
 │
 ├── .gitignore
@@ -69,7 +67,7 @@ dengue-project/
    - `source("codes/prepare_model_data.R")` (Dataset integrator)
    - `source("codes/time_series_modeling.R")` (SARIMAX model runner)
 
- **Note:** Results and diagnostics are automatically saved in `/results/` (metrics, forecasts) and `/figures/` (plots, diagnostics).
+ **Note:** Results are automatically saved in `/figures/` (plots, diagnostics).
 
 ## 📄 Data Description
 
