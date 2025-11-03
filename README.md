@@ -32,7 +32,7 @@ dengue-project/
 │   │
 │   └── gold/                        # Final integrated dataset for modeling
 │       └── working_data.parquet
-││
+│
 ├── figures/                         # Exploratory plots, diagnostics, and forecast visualizations
 │
 ├── .gitignore
